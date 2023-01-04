@@ -1,0 +1,8 @@
+{
+  "name": "typescript-lab-puppiesfullstack",
+  "version": "1.0.0",
+  "description": "## Task Your task is to create a frontend to the API that you created the other day, aka `puppiesAPI`. This is a good app to put in your portfolio, so even though it does not have any design requirements, make it look nice. The application should be built with React and TypeScript",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
