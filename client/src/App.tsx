@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import IPuppies from './interfaces/interface';
-import Form from './components/Form';
-import Puppies from './components/Puppies';
+import { Routes, Route } from 'react-router-dom';
+import IPuppies from './interfaces/IPuppies';
+import Home from './routes/Home';
+import PuppyGallery from './routes/PuppyGallery';
+import Puppy from './routes/Puppy';
 import './App.css';
 
 const App = () => {
 
 const [data, setData] = useState<IPuppies[]>([]);
-
-const formHandler = () => {
-
-};
 
 useEffect(() => {
   const fetchData = async () => {
@@ -23,8 +21,11 @@ useEffect(() => {
 
   return (
     <main>
-      <Form data={data} formHandler={formHandler}/>
-      <Puppies data={data}/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/puppies' element={ <PuppyGallery data={data}/>} />
+        <Route path='/puppies/:id' element={ <Puppy/>} />
+      </Routes> 
     </main>
   );
 }

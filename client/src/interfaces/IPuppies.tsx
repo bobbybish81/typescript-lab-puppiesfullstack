@@ -1,8 +1,9 @@
 interface IPuppies {
-  id: number,
+  id?: number,
   breed: string,
   name: string,
   birthdate: string,
+  url?: string,
 }
 
 export default IPuppies;

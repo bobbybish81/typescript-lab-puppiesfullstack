@@ -1,0 +1,113 @@
+.gallery-container {
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://images.unsplash.com/photo-1615569707541-5ace6aa2ce3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+  background-size: cover;
+  background-color: #ffffff99;
+  background-blend-mode: overlay;
+  text-align: center;
+}
+
+.text-container {
+  color: #363535;
+}
+
+.text-container h1 {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.text-container p {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.add-btn {
+  width: 10rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: #3e4389;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.add-btn:hover {
+  background-color: #404adf;
+  cursor: pointer;
+}
+
+.puppies-container {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  animation: fadein 1.5s;
+}
+
+.puppy-article {
+  margin: 1rem;
+  position: relative;
+}
+
+.puppy-img {
+  height: 20rem;
+  width: 18rem;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  box-shadow: rgba(0, 0, 0, 0.618) 0px 5px 15px;
+}
+
+.btn-div {
+  width: 100%;
+  position: absolute;
+  bottom: 5%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-btn, .delete-btn {
+  width: 6.5rem;
+  padding: 0.25rem;
+  background-color: #3e4389;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+}
+
+.edit-btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.delete-btn {
+  background-color: #b03939;
+}
+
+.edit-btn:hover {
+  background-color: #404adf;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #cf1c1c;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .puppies-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .puppies-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

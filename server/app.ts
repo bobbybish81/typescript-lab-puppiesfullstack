@@ -7,20 +7,23 @@ import express, {
 
 import IPuppies from 'interface';
 import puppiesDB from './database';
+import cors from "cors";
 
 const app: Application = express();
 
+app.use(cors()) 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const birthdateRegex = /(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\d\d/gm;
+// const birthdateRegex = /(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\d\d/gm;
 
 const reqValidator = (_req: Request) => {
   if (Object.keys(_req.body).length === 0) { throw new Error('No data provided'); }
   if (!_req.body.breed) { throw new Error('Puppy breed not provided!'); }
   if (!_req.body.name) { throw new Error('Puppy name not provided!'); }
   if (!_req.body.birthdate) { throw new Error('Puppy birthdate not provided!'); }
-  if (_req.body.birthdate && !birthdateRegex.test(_req.body.birthdate)) { throw new Error('birthdate must be in DD-MM-YYYY format!'); }
+  if (!_req.body.url) { throw new Error('Image url not provided!'); }
+  // if (_req.body.birthdate && !birthdateRegex.test(_req.body.birthdate)) { throw new Error('birthdate must be in DD-MM-YYYY format!'); }
 };
 
 const ErrorHandler = (err: Error, _req: Request, res: Response, next: NextFunction) : void => {
@@ -52,6 +55,7 @@ app
       breed: _req.body.breed,
       name: _req.body.name,
       birthdate: _req.body.birthdate,
+      url: _req.body.url,
     };
     puppiesDB.push(newPuppy);
     res.setHeader('location', `/api/puppies/${newPuppy.id}`)
@@ -86,6 +90,7 @@ app
     puppy.name = _req.body.name;
     puppy.breed = _req.body.breed;
     puppy.birthdate = _req.body.birthdate;
+    puppy.url = _req.body.url;
     return res
       .setHeader('location', `/api/puppies/${puppy.id}`)
       .setHeader('content-type', 'application/json')
