@@ -2,19 +2,19 @@ import IPuppies from 'interface';
 
 const puppiesDB: Array<IPuppies> = [
   {
-    id: 1, breed: 'Bulldog', name: 'Butch', birthdate: '21-06-2022',
+    id: 1, breed: 'Bulldog', name: 'Bob', birthdate: '12-08-2022',
     url: 'https://images.unsplash.com/photo-1568315056770-f4a63027dcd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
   },
   {
-    id: 2, breed: 'German Shephard', name: 'Jurgen', birthdate: '08-09-2022',
-    url:'https://images.unsplash.com/photo-1598398386929-4d5370672e9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80',
+    id: 2, breed: 'German Shepherd', name: 'Aicha', birthdate: '06-07-2022',
+    url:'https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z2VybWFuJTIwc2hlcGhlcmQlMjBkb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
   },
   {
-    id: 3, breed: 'Labrador', name: 'Marley', birthdate: '14-11-2022',
+    id: 3, breed: 'Labrador', name: 'Leila', birthdate: '10-11-2022',
     url:'https://images.unsplash.com/photo-1561495376-dc9c7c5b8726?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFicmFkb3J8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
   },
   {
-    id: 4, breed: 'Golden Retriever', name: 'Goldie', birthdate: '01-07-2022',
+    id: 4, breed: 'Golden Retriever', name: 'Henry', birthdate: '31-01-2022',
     url:'https://images.unsplash.com/photo-1591160690555-5debfba289f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80',
   },
   {
@@ -46,8 +46,8 @@ const puppiesDB: Array<IPuppies> = [
     url:'https://images.unsplash.com/photo-1554634242-a653caa56834?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fEJpY2hvbiUyMEZyaXMlQzMlQTl8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
   },
   {
-    id: 12, breed: 'Bullmastiff', name: 'Tank', birthdate: '29-10-2022',
-    url:'https://images.unsplash.com/photo-1658347124285-281deec3dee8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29yZ2klMjBwdXBweXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+    id: 12, breed: 'Cavalier King Charles Spaniel', name: 'Charlie', birthdate: '29-10-2022',
+    url:'https://images.unsplash.com/photo-1613928521908-24ccf17a1707?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Q2F2YWxpZXIlMjBLaW5nJTIwQ2hhcmxlcyUyMFNwYW5pZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
   },
 ];
 

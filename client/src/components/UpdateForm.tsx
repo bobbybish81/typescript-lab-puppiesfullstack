@@ -1,50 +1,99 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import IPuppies from '.././interfaces/IPuppies';
+import '.././styles/forms.css';
 
-const UpdateForm = () => {
+interface UpdateFormProps {
+  data : Array<IPuppies>,
+  setData: (param: Array<IPuppies> ) => void,
+}
 
-  const [req, setReq] = useState({
-    breed: '', 
-    name: '',
-    birthdate: '',
-    url: '',
+const UpdateForm = ({data, setData}: UpdateFormProps) => {
+
+  useLayoutEffect(() => {
+    window.scrollTo(0,0)
+  })
+
+  const navigate = useNavigate();
+
+  let { id } = useParams();
+  const index: number = data?.findIndex(obj => obj.id === Number(id))
+
+  const [puppy, setPuppy] = useState({
+    breed: data[index].breed, 
+    name: data[index].name, 
+    birthdate: data[index].birthdate,
+    url: data[index].url,
   });
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setReq({
-      ...req,
+    setPuppy({
+      ...puppy,
       [event.target.name]: event.target.value
     });
    };
 
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-      fetch('http://localhost:8080/api/puppies', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: req.name,
-          breed: req.breed,
-          birthdate: req.birthdate,
-        }),
+  const updateHandler = (event: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>) => {
+    const fetchData = async () => {
+      const response = await fetch(`/api/puppies/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(puppy),
         headers: {
           'Content-Type': 'application/json'
           }
       });
+    const newData = await response.json();
+    setData(newData);
   }
+  fetchData();
+  navigate('/puppies');
+  window.location.reload();
+  alert(`Changes added to Gallery`)
+}
 
   return (
-    <form
-      className='putReqForm'
-      // style={{display: 'none'}}
-      onSubmit={event => submitHandler(event)}>
-      <button className='close-btn' type='button'>X</button>
-      <h2>Update Puppy</h2>
-      <input className='req-input' onChange={changeHandler} type='text' name='name' value={req.name} placeholder='Enter Puppy Name (required)' maxLength={25} autoComplete='off' required={true}/>
-      <input className='req-input' onChange={changeHandler} type='text' name='breed' value={req.breed} placeholder='Enter Puppy Breed (required)' maxLength={50} autoComplete='off' required={true}/>
-      <input className='req-input' onChange={changeHandler} type='text' name='birthdate' value={req.birthdate} placeholder='Enter birthdate DD-MM-YYYY (required)' maxLength={25} autoComplete='off' required={true}/>
-      <div className='btn-div'>
-        <button className='submit-btn' type='submit'>Add Puppy</button>
-      </div>
-    </form>
+    <section className='update-form-container'>
+      <h1>Edit the form below to update puppy details</h1>
+      {data?.filter(obj => obj.id === Number(id))
+        .map((puppy, index) => {
+          return (
+            <form
+              key={index}
+              className='update-form'
+              onSubmit={event => updateHandler(event)}
+              >
+              <div className='close-btn-div'>
+                <Link to={'/puppies'}>
+                  <button className='close-btn' type='button'>X</button>
+                </Link>
+              </div>
+              <h2>{`UPDATE ${puppy.name.toUpperCase()}`}</h2>
+              <p className='form-text'>*edit relevant field(s) below</p>
+              <div className='form-div'>
+                <div className='img-div'>
+                  <img className='puppy-img' src={`${puppy.url}`} alt={`${puppy.breed} to appear`}/>
+                </div>
+                <div className='input-div'>
+                  <label>Name:</label>
+                  <input className='update-input' onChange={changeHandler} type='text' name='name' placeholder={puppy.name} maxLength={30} autoComplete='off' required={true}/>
+                  <label>Breed:</label>
+                  <input className='update-input' onChange={changeHandler} type='text' name='breed' placeholder={puppy.breed} maxLength={30} autoComplete='off' required={true}/>
+                  <label>Birthdate:</label>
+                  <input className='update-input' onChange={changeHandler} type='text' name='birthdate' placeholder={puppy.birthdate} maxLength={30} autoComplete='off' required={true}/>
+                  <label>Url:</label>
+                  <input className='update-input' onChange={changeHandler} type='text' name='url' placeholder={puppy.url} autoComplete='off' required={true}/>
+                  <div className='submit-btn-div'>
+                    <Link to={'/puppies'}>
+                      <button className='add-btn' type='submit'
+                      onClick={event => updateHandler(event)}>Save Changes</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </form>
+        )}
+      )} 
+    </section>
   )
 }
 

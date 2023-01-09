@@ -1,0 +1,29 @@
+.error-container {
+    height: 60rem;
+    border: 1px solid #fff;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://images.unsplash.com/photo-1615569707541-5ace6aa2ce3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-size: cover;
+    background-color: #ffffff99;
+    background-blend-mode: overlay;
+    color: #3e4389;
+}
+
+.error-container h1 {
+  margin: 7rem auto;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.error-container p  {
+  margin: 3rem auto 0 auto;
+  font-size: 1.75rem;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.error-container p:hover {
+  color: #404adf;
+}
+

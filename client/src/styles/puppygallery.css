@@ -1,12 +1,11 @@
 .gallery-container {
   border: 1px solid #fff;
-  margin: 0;
-  padding: 0;
   background-image: url('https://images.unsplash.com/photo-1615569707541-5ace6aa2ce3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
   background-size: cover;
   background-color: #ffffff99;
   background-blend-mode: overlay;
   text-align: center;
+  min-height: 60rem;
 }
 
 .text-container {
@@ -43,11 +42,40 @@
   display: grid;
   grid-template-columns: 1fr;
   animation: fadein 1.5s;
+  max-width: 1400px;
 }
 
 .puppy-article {
   margin: 1rem;
+  background-color: transparent;
+}
+
+.puppy-article {
+  background-color: transparent;
+  margin: 1rem;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.puppy-article-inner {
+  height: 20rem;
+  width: 18rem;
   position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.puppy-article:hover .puppy-article-inner {
+  transform: rotateY(180deg);
+}
+
+.puppy-article-front, .puppy-article-back {
+  height: 20rem;
+  width: 18rem;
+  position: absolute;
+  backface-visibility: hidden;
 }
 
 .puppy-img {
@@ -55,7 +83,28 @@
   width: 18rem;
   border-radius: 10px;
   border: 2px solid #fff;
-  box-shadow: rgba(0, 0, 0, 0.618) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.puppy-article-back {
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 10px;
+  border: 2px solid #a49282;
+  transform: rotateY(180deg);
+  padding-top: 2rem;
+}
+
+.list-item {
+  margin: 1rem auto;
+  color: #676769;
+  text-decoration: none;
+  font-style: italic;
+}
+
+b {
+  color: #3e4389;
+  font-style: normal;
 }
 
 .btn-div {
@@ -97,13 +146,13 @@
 
 @media screen and (min-width: 768px) {
   .puppies-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (min-width: 1280px) {
   .puppies-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

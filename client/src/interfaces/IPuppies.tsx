@@ -3,7 +3,7 @@ interface IPuppies {
   breed: string,
   name: string,
   birthdate: string,
-  url?: string,
+  url: string,
 }
 
 export default IPuppies;

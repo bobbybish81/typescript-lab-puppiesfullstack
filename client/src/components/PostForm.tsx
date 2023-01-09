@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import IPuppies from '.././interfaces/IPuppies';
+import '.././styles/forms.css';
 
-const PostForm = () => {
+interface PostFormProps {
+  setData: (param: Array<IPuppies>) => void,
+}
 
-  const [req, setReq] = useState({
+const PostForm = ({setData}: PostFormProps) => {
+
+  const [puppy, setPuppy] = useState({
     breed: '', 
     name: '',
     birthdate: '',
@@ -10,41 +17,54 @@ const PostForm = () => {
   });
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setReq({
-      ...req,
+    setPuppy({
+      ...puppy,
       [event.target.name]: event.target.value
     });
    };
 
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-      fetch('http://localhost:8080/api/puppies', {
+  const postHandler = (event: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>) => {
+    const fetchData = async () => {
+      const response = await fetch('/api/puppies', {
         method: 'POST',
-        body: JSON.stringify({
-          name: req.name,
-          breed: req.breed,
-          birthdate: req.birthdate,
-        }),
+        body: JSON.stringify(puppy),
         headers: {
           'Content-Type': 'application/json'
           }
       });
+    const data = await response.json();
+    setData(data);
   }
+  fetchData();
+  alert(`${puppy.name} (${puppy.breed}) has been added to the Gallery`)
+}
 
   return (
-    <form
-      className='postReqForm'
-      // style={{display: 'none'}}
-      onSubmit={event => submitHandler(event)}>
-      <button className='close-btn' type='button'>X</button>
-      <h2>Update Puppy</h2>
-      <input className='req-input' onChange={changeHandler} type='text' name='name' value={req.name} placeholder='Enter Puppy Name (required)' maxLength={25} autoComplete='off' required={true}/>
-      <input className='req-input' onChange={changeHandler} type='text' name='breed' value={req.breed} placeholder='Enter Puppy Breed (required)' maxLength={50} autoComplete='off' required={true}/>
-      <input className='req-input' onChange={changeHandler} type='text' name='birthdate' value={req.birthdate} placeholder='Enter birthdate DD-MM-YYYY (required)' maxLength={25} autoComplete='off' required={true}/>
-      <div className='btn-div'>
-        <button className='submit-btn' type='submit'>Add Puppy</button>
-      </div>
-    </form>
+    <section className='post-form-container'>
+      <h1>Complete the form below to add a new puppy to our Gallery!</h1>
+      <form
+        className='post-form'
+        onSubmit={event => postHandler(event)}
+        >
+        <div className='close-btn-div'>
+          <Link to={'/puppies'}>
+            <button className='close-btn' type='button'>X</button>
+          </Link>
+        </div>
+        <h2>ADD A NEW PUPPY</h2>
+        <p className='form-text'>* all fields must be populated</p>
+        <input className='post-input' onChange={changeHandler} type='text' name='name' value={puppy.name} placeholder='*Enter Puppy Name' maxLength={30} autoComplete='off' required={true}/>
+        <input className='post-input' onChange={changeHandler} type='text' name='breed' value={puppy.breed} placeholder='*Enter Puppy Breed' maxLength={30} autoComplete='off' required={true}/>
+        <input className='post-input' onChange={changeHandler} type='text' name='birthdate' value={puppy.birthdate} placeholder='*Enter birthdate DD-MM-YYYY' maxLength={30} autoComplete='off' required={true}/>
+        <input className='post-input' onChange={changeHandler} type='text' name='url' value={puppy.url} placeholder='*Enter Image URL' autoComplete='off' required={true}/>
+        <div className='submit-btn-div'>
+          <Link to={'/puppies'}>
+            <button className='add-btn' type='submit'
+            onClick={event => postHandler(event)}>Add Puppy</button>
+          </Link>
+        </div>
+      </form>
+    </section>
   )
 }
 

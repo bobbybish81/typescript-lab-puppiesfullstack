@@ -61,7 +61,7 @@ app
     res.setHeader('location', `/api/puppies/${newPuppy.id}`)
       .setHeader('content-type', 'application/json')
       .status(201)
-      .json(newPuppy);
+      .json(puppiesDB);
   });
 app
   .use(ErrorHandler);

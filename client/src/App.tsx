@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import IPuppies from './interfaces/IPuppies';
-import Home from './routes/Home';
-import PuppyGallery from './routes/PuppyGallery';
-import Puppy from './routes/Puppy';
+import Home from './components/Home';
+import PostForm from './components/PostForm';
+import UpdateForm from './components/UpdateForm';
+import PuppyGallery from './components/PuppyGallery';
+import Error from './components/Error';
 import './App.css';
 
 const App = () => {
@@ -23,8 +25,10 @@ useEffect(() => {
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/postform" element={<PostForm setData={setData}/>} />
         <Route path='/puppies' element={ <PuppyGallery data={data}/>} />
-        <Route path='/puppies/:id' element={ <Puppy/>} />
+        <Route path='/puppies/:id' element={ <UpdateForm data={data} setData={setData}/>} />
+        <Route path="*" element={<Error/>}/>
       </Routes> 
     </main>
   );
