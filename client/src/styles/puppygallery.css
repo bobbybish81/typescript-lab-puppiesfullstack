@@ -43,6 +43,7 @@
   grid-template-columns: 1fr;
   animation: fadein 1.5s;
   max-width: 1400px;
+  margin: 0 auto;
 }
 
 .puppy-article {
